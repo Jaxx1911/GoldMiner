@@ -17,19 +17,25 @@ public class MenuScene extends Scene {
 
     public MenuScene(GameWindows gameWindows) {
         super(gameWindows);
-        start = new GameButton(new Position(200,400));
+        start = new GameButton(new Position(200, 400)) {
+            @Override
+            public void Clicked() {
+                gameWindows.getSceneStack().push(new GameScene(gameWindows));
+            }
+        };
         try {
             start.setImage(ImageIO.read(new File("Resources/Start.png")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        gameWindows.addMouseListener(start.getMouseListener());
+        listGameObject.add(start);
+        gameWindows.getMouseListenerStack().push(start.getMouseListener());
     }
 
 
 
     public void draw(Graphics g) {
         super.draw(g);
-        start.draw(g);
     }
+
 }

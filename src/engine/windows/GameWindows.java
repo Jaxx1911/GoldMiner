@@ -21,10 +21,12 @@ public class GameWindows extends Frame implements Runnable {
 
     private static final int UPDATE_PER_SECOND = 60;
     Stack<Scene> sceneStack;
-    Stack<KeyListener> keyListenerStack;
-    Stack<MouseListener> mouseListenerStack;
+
     private Image image;
     private Graphics second;
+
+    Stack<KeyListener> keyListenerStack;
+    Stack<MouseListener> mouseListenerStack;
 
     public GameWindows() {
         super();
@@ -32,7 +34,7 @@ public class GameWindows extends Frame implements Runnable {
         keyListenerStack = new Stack<>();
         mouseListenerStack = new Stack<>();
         this.setSize(480, 800);
-        this.setTitle("Techdee");
+        this.setTitle("GoldMiner");
         this.setFocusable(true);
         this.setVisible(true);
         this.setResizable(false);

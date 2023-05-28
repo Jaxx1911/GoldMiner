@@ -1,6 +1,7 @@
 package engine.windows.node;
 
 import engine.windows.common.Position;
+import engine.windows.node.listeners.MouseClickListener;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class GameButton extends GameObject{
+public abstract class GameButton extends GameObject {
 
     private MouseListener mouseListener;
 
@@ -26,13 +27,13 @@ public class GameButton extends GameObject{
             }
             @Override
             public void mousePressed(MouseEvent e) {
-                clickPosition = new Position(getPosition().x,getPosition().y);
+                clickPosition = new Position(e.getX(),e.getY());
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 if(clickPosition.x>=position.x&&clickPosition.x<= position.x+image.getWidth()&&clickPosition.y>=position.y&&clickPosition.y<= position.y+image.getHeight())
-                    System.out.println("dit me may");
+                    Clicked();
             }
 
             @Override
@@ -47,19 +48,12 @@ public class GameButton extends GameObject{
         };
 
     }
-
-    public void triggerClick(){
-
-    }
+    abstract public void Clicked();
     @Override
     public void collideWith(GameObject target) {
     }
     public MouseListener getMouseListener() {
         return mouseListener;
-    }
-
-    public BufferedImage getImage() {
-        return image;
     }
 
     public void setImage(BufferedImage image) {
@@ -69,5 +63,7 @@ public class GameButton extends GameObject{
     public void draw(Graphics g){
         g.drawImage(image,position.x,position.y,null);
     }
+
+
 
 }

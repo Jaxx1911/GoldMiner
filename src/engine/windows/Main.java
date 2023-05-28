@@ -18,6 +18,7 @@ public class Main {
         GameWindows gameWindows = new GameWindows();
         MenuScene menuScene = new MenuScene(gameWindows);
         gameWindows.getSceneStack().push(menuScene);
+        gameWindows.addMouseListener(gameWindows.mouseListenerStack.peek());
         gameWindows.start();
     }
 }
