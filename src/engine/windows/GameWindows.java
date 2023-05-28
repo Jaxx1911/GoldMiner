@@ -9,6 +9,8 @@ package engine.windows;
 import engine.windows.node.scenes.Scene;
 
 import java.awt.*;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.util.Stack;
 
@@ -19,12 +21,16 @@ public class GameWindows extends Frame implements Runnable {
 
     private static final int UPDATE_PER_SECOND = 60;
     Stack<Scene> sceneStack;
+    Stack<KeyListener> keyListenerStack;
+    Stack<MouseListener> mouseListenerStack;
     private Image image;
     private Graphics second;
 
     public GameWindows() {
         super();
         sceneStack = new Stack<>();
+        keyListenerStack = new Stack<>();
+        mouseListenerStack = new Stack<>();
         this.setSize(480, 800);
         this.setTitle("Techdee");
         this.setFocusable(true);
@@ -63,6 +69,10 @@ public class GameWindows extends Frame implements Runnable {
     public Stack<Scene> getSceneStack() {
         return sceneStack;
     }
+
+    public Stack<KeyListener> getKeyListenerStack() {return keyListenerStack;}
+
+    public Stack<MouseListener> getMouseListenerStack() {return mouseListenerStack;}
 
     @Override
     public void paint(Graphics g) {

@@ -1,54 +1,35 @@
 package engine.windows.node.scenes;
 
 import engine.windows.GameWindows;
+import engine.windows.common.Position;
+import engine.windows.node.GameButton;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class MenuScene extends Scene {
+    GameButton start;
 
     public MenuScene(GameWindows gameWindows) {
         super(gameWindows);
-        gameWindows.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (e.getX() > 200 && e.getX() < 400 && e.getY() > 200 && e.getY() < 250) {
-                }
-
-                if (e.getX() > 200 && e.getX() < 400 && e.getY() > 400 && e.getY() < 450) {
-                    System.exit(0);
-                }
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
+        start = new GameButton(new Position(200,400));
+        try {
+            start.setImage(ImageIO.read(new File("Resources/Start.png")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        gameWindows.addMouseListener(start.getMouseListener());
     }
+
+
 
     public void draw(Graphics g) {
         super.draw(g);
-        g.drawRect(200, 200, 200, 50);
-        g.drawString("PLAY", 210, 210);
-
-        g.drawRect(200, 400, 200, 50);
-        g.drawString("QUIT", 210, 410);
+        start.draw(g);
     }
 }
