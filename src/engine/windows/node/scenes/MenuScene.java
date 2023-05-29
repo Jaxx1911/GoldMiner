@@ -3,6 +3,7 @@ package engine.windows.node.scenes;
 import engine.windows.GameWindows;
 import engine.windows.common.Position;
 import engine.windows.node.GameButton;
+import engine.windows.node.background.MenuBackground;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,9 +15,11 @@ import java.io.IOException;
 
 public class MenuScene extends Scene {
     GameButton start;
+    MenuBackground menuBackground;
 
     public MenuScene(GameWindows gameWindows) {
         super(gameWindows);
+        menuBackground = new MenuBackground();
         start = new GameButton(new Position(200, 400)) {
             @Override
             public void Clicked() {
@@ -35,6 +38,7 @@ public class MenuScene extends Scene {
 
 
     public void draw(Graphics g) {
+        menuBackground.draw(g);
         super.draw(g);
     }
 

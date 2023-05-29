@@ -19,7 +19,8 @@ public class Rope extends GameObject {
 
     public void draw(Graphics g){
         super.draw(g);
-        g.drawLine(position.x,position.y,taker.getPosition().x,taker.getPosition().y);
+        g.setColor(Color.BLACK);
+        g.drawLine(position.x+taker.image.getWidth()/2,position.y,taker.getPosition().x+taker.image.getWidth()/2,taker.getPosition().y);
     }
 
     @Override
