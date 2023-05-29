@@ -21,12 +21,16 @@ public class GameScene extends Scene{
         listGameObject = new ArrayList<>();
         gameBackground = new GameBackground();
         taker = new Taker(new Position(300,200));
+
+        listGameObject.add(new Rope(new Position(300,190),taker));
         listGameObject.add(taker);
-        listGameObject.add(new Rope(new Position(300,195),taker));
     }
 
     @Override
     public void draw(Graphics g) {
+        gameBackground.draw(g);
+        g.setColor(Color.CYAN);
+        g.fillRect(taker.getOrgPos().x + taker.getImage().getWidth()/2,taker.getOrgPos().y,1,1);
         super.draw(g);
     }
 

@@ -1,7 +1,8 @@
-package engine.windows.node.Object;
+package engine.windows.node.Object.Underground;
 
 import engine.windows.common.Position;
 import engine.windows.node.GameObject;
+import engine.windows.node.Object.Taker;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,6 +12,8 @@ public class UndergroundObject extends GameObject {
     int mass;
 
     Taker taker;
+
+    Boolean taked;
 
     Position objectCenter;
 
@@ -32,6 +35,7 @@ public class UndergroundObject extends GameObject {
 
     @Override
     public void collideWith(GameObject target) {
-        target = taker;
+        if(target instanceof Taker)
+            taked = true;
     }
 }
