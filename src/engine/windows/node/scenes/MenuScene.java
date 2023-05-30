@@ -21,14 +21,14 @@ public class MenuScene extends Scene {
     public MenuScene(GameWindows gameWindows) {
         super(gameWindows);
         menuBackground = new MenuBackground();
-        start = new GameButton(menuBackground.getGoldPosition()) {
+        start = new GameButton(new Position(1020,200)) {
             @Override
             public void Clicked() {
                 gameWindows.getSceneStack().push(new GameScene(gameWindows));
             }
         };
         try {
-            start.setImage(ImageIO.read(new File("Resources/Start.png")));
+            start.setImage(ImageIO.read(new File("Resources/Menu/start.png")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

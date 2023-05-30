@@ -14,71 +14,68 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuBackground {
+    BufferedImage Background;
+    BufferedImage RockTile;
+    BufferedImage Door;
+    BufferedImage Floor;
+    BufferedImage rightRock;
+    BufferedImage leftRock;
 
-    BufferedImage human;
-    Animation goldAnimation;
-    BufferedImage light;
-    BufferedImage instructionBoard;
-    BufferedImage control1,control2;
+    BufferedImage body;
+    BufferedImage head;
 
-    String c1 = "Controls";
-    String button1 = "Drop";
-    String button2 = "TNT";
-    Position windowPosition;
-    Position goldPosition;
-    Position boardPosition;
+    int floorHeight = 540;
+
+    int rocktileHeight = 300;
+
+    double angle = 0 ;
     double time = 0;
-    double LightScaleChange = 2.2;
 
-    double GoldScale = 1.2;
-    double HumanScale = 1.3;
-
+    Position startPos;
     public MenuBackground(){
         try {
-            List<BufferedImage> Gold = new ArrayList<>();
-            human = ImageIO.read(new File("Resources/Menu/Human.png"));
-            for(int i = 0 ;i<8;i++){
-                String filename = "Resources/BigGold/Gold"+(i+1)+".png";
-                Gold.add(ImageIO.read(new File(filename)));
-            }
-            goldAnimation = new Animation(500,Gold,true);
-            light = ImageIO.read(new File("Resources/Menu/Light.png"));
-            instructionBoard = ImageIO.read(new File("Resources/Menu/instruction.png"));
-            control1 = ImageIO.read(new File("Resources/Menu/BackButton.png"));
-            control2 = ImageIO.read(new File("Resources/Menu/BackButton.png"));
-
+            Background = ImageIO.read(new File("Resources/Menu/bg.png"));
+            RockTile = ImageIO.read(new File("Resources/Menu/rocktile.png"));
+            Door = ImageIO.read(new File("Resources/Menu/door.png"));
+            Floor = ImageIO.read(new File("Resources/Menu/floor.png"));
+            rightRock = ImageIO.read(new File("Resources/Menu/RightRock.png"));
+            leftRock = ImageIO.read(new File("Resources/Menu/LeftRock.png"));
+            body = ImageIO.read(new File("Resources/Menu/body.png"));
+            head = ImageIO.read(new File("Resources/Menu/head.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        windowPosition = new Position(800,600);
-        goldPosition = new Position(200,200);
-        boardPosition = new Position(10 ,windowPosition.y-10 - instructionBoard.getHeight());
+        startPos = new Position(1020 - body.getWidth() - 90,400);
     }
 
     public void draw(Graphics g){
-        g.setColor(Color.BLACK);
-        g.fillRect(0,0,windowPosition.x, windowPosition.y);
-        g.drawImage(Tool.ScaleImage(light,LightScaleChange), goldPosition.x -Tool.ScaleImage(light,LightScaleChange).getWidth()/2,goldPosition.y - Tool.ScaleImage(light,LightScaleChange).getHeight()/2,null);
-        g.drawImage(Tool.ScaleImage(goldAnimation.getCurrentImage(),GoldScale), goldPosition.x- Tool.ScaleImage(goldAnimation.getCurrentImage(),GoldScale).getWidth()/2, goldPosition.y - Tool.ScaleImage(goldAnimation.getCurrentImage(),GoldScale).getHeight()/2,null);
-        g.drawImage(Tool.ScaleImage(human,HumanScale), windowPosition.x - Tool.ScaleImage(human,HumanScale).getWidth(), windowPosition.y - Tool.ScaleImage(human,HumanScale).getHeight(),null);
-        g.drawImage(instructionBoard,10 , windowPosition.y-10 - instructionBoard.getHeight(),null);
-        g.setColor(Color.YELLOW);
-        g.setFont(new Font("Arial",Font.BOLD, 24));
-        g.drawString(c1, boardPosition.x + 108, boardPosition.y +24);
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial",Font.BOLD, 18));
-        g.drawString(button1,boardPosition.x + 50,boardPosition.y +24*2);
-        g.drawImage(Tool.rotate(control1,Math.PI),boardPosition.x + 50 ,boardPosition.y +24*2 + 10,null);
-        g.drawString(button2,boardPosition.x + 230,boardPosition.y +24*2);
-        g.drawImage(control2,boardPosition.x + 230,boardPosition.y +24*2 + 10,null);
-    }
+        for(int i = 0;i<3;i++){
+            g.drawImage(Background,i*Background.getWidth(),0,null);
+            g.drawImage(Background,i*Background.getWidth(),Background.getHeight(),null);
+        }
+        g.drawImage(RockTile,0,rocktileHeight,null);   g.drawImage(RockTile,RockTile.getWidth(),rocktileHeight,null);
+        g.drawImage(Door,1020 - Door.getWidth() - 90,200,null);
+        g.drawImage(Floor,0,floorHeight,null); g.drawImage(Floor,Floor.getWidth(),floorHeight,null);
+        g.drawImage(rightRock,1440 - rightRock.getWidth(),0,null);
+        g.drawImage(leftRock,0,0,null);
+        g.drawImage(body, 1020 - body.getWidth() - 90,400,null);
+        g.drawImage(rotate(head,angle),1020 - head.getWidth() - 90,335,null);
+    };
 
     public void update(){
-        time +=0.3;
-        LightScaleChange = 2.2 + 0.4*Math.cos(Math.PI*time/10);
-    }
+        time += 0.1;
+        angle = Math.PI/48*Math.cos(3.0/2/Math.PI*time);
+    };
+    public static BufferedImage rotate(BufferedImage bimg, double angle) {
 
-    public Position getGoldPosition() {
-        return goldPosition;
+        int w = bimg.getWidth();
+        int h = bimg.getHeight();
+
+        BufferedImage rotated = new BufferedImage(w+20, h+20, bimg.getType());
+        Graphics2D graphic = rotated.createGraphics();
+        graphic.rotate(angle, w/2, h/2);
+        graphic.drawImage(bimg, null, 5, 5);
+        graphic.dispose();
+        return rotated;
     }
 }

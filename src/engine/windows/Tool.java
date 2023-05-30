@@ -9,7 +9,7 @@ public class Tool {
         int w = bimg.getWidth();
         int h = bimg.getHeight();
 
-        BufferedImage rotated = new BufferedImage(w+5, h+5, bimg.getType());
+        BufferedImage rotated = new BufferedImage(w+20, h+20, bimg.getType());
         Graphics2D graphic = rotated.createGraphics();
         graphic.rotate(angle, w/2, h/2);
         graphic.drawImage(bimg, null, 0, 0);
