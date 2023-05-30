@@ -60,8 +60,12 @@ public abstract class GameButton extends GameObject {
         this.image = image;
     }
 
+    public BufferedImage getImage() {
+        return image;
+    }
+
     public void draw(Graphics g){
-        g.drawImage(image,position.x,position.y,null);
+        g.drawImage(image,position.x-image.getWidth()/2,position.y-image.getHeight()/2,null);
     }
 
 
