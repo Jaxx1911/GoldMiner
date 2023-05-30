@@ -27,7 +27,7 @@ public class Gold extends UndergroundObject {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        animation = new Animation(3,imageList,true);
+        animation = new Animation(1000,imageList,true);
     }
 
 }
