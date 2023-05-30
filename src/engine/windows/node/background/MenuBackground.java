@@ -20,15 +20,18 @@ public class MenuBackground {
     BufferedImage Floor;
     BufferedImage rightRock;
     BufferedImage leftRock;
+    BufferedImage Title;
 
     BufferedImage body;
     BufferedImage head;
+    BufferedImage light;
 
     int floorHeight = 540;
 
     int rocktileHeight = 300;
 
     double angle = 0 ;
+    double ratio  = 0;
     double time = 0;
 
     Position startPos;
@@ -40,12 +43,14 @@ public class MenuBackground {
             Floor = ImageIO.read(new File("Resources/Menu/floor.png"));
             rightRock = ImageIO.read(new File("Resources/Menu/RightRock.png"));
             leftRock = ImageIO.read(new File("Resources/Menu/LeftRock.png"));
+            Title = ImageIO.read(new File("Resources/Menu/Titile.png"));
             body = ImageIO.read(new File("Resources/Menu/body.png"));
             head = ImageIO.read(new File("Resources/Menu/head.png"));
+            light = ImageIO.read(new File("Resources/Menu/sunray-sheet0.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        startPos = new Position(1020 - body.getWidth() - 90,400);
+        startPos = new Position(1020 - body.getWidth() + 35,525);
     }
 
     public void draw(Graphics g){
@@ -58,13 +63,16 @@ public class MenuBackground {
         g.drawImage(Floor,0,floorHeight,null); g.drawImage(Floor,Floor.getWidth(),floorHeight,null);
         g.drawImage(rightRock,1440 - rightRock.getWidth(),0,null);
         g.drawImage(leftRock,0,0,null);
-        g.drawImage(body, 1020 - body.getWidth() - 90,400,null);
-        g.drawImage(rotate(head,angle),1020 - head.getWidth() - 90,335,null);
+        g.drawImage(Tool.ScaleImage(Tool.rotate(light,ratio),2.5),1020 - body.getWidth() + 28 - Tool.ScaleImage(light,2.5).getWidth()/2 ,520 - Tool.ScaleImage(light,2.5).getHeight()/2,null);
+        g.drawImage(body, 1020 - body.getWidth() - 90,425,null);
+        g.drawImage(rotate(head,angle),1020 - head.getWidth() - 90,350,null);
+        g.drawImage(Title, 370,100,null);
     };
 
     public void update(){
         time += 0.1;
         angle = Math.PI/48*Math.cos(3.0/2/Math.PI*time);
+        ratio = 0.01*Math.PI*time;
     };
     public static BufferedImage rotate(BufferedImage bimg, double angle) {
 
@@ -77,5 +85,9 @@ public class MenuBackground {
         graphic.drawImage(bimg, null, 5, 5);
         graphic.dispose();
         return rotated;
+    }
+
+    public Position getStartPos() {
+        return startPos;
     }
 }

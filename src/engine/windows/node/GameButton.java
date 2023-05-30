@@ -1,5 +1,6 @@
 package engine.windows.node;
 
+import engine.windows.Tool;
 import engine.windows.common.Position;
 import engine.windows.node.listeners.MouseClickListener;
 
@@ -12,8 +13,9 @@ import java.io.File;
 import java.io.IOException;
 
 public abstract class GameButton extends GameObject {
-
     private MouseListener mouseListener;
+
+    boolean zoom;
 
     BufferedImage image;
 
@@ -65,7 +67,7 @@ public abstract class GameButton extends GameObject {
     }
 
     public void draw(Graphics g){
-        g.drawImage(image,position.x-image.getWidth()/2,position.y-image.getHeight()/2,null);
+        g.drawImage(image,position.x,position.y,null);
     }
 
 
