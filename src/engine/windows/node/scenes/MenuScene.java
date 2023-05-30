@@ -14,13 +14,14 @@ import java.io.File;
 import java.io.IOException;
 
 public class MenuScene extends Scene {
+
     GameButton start;
     MenuBackground menuBackground;
 
     public MenuScene(GameWindows gameWindows) {
         super(gameWindows);
         menuBackground = new MenuBackground();
-        start = new GameButton(new Position(200, 400)) {
+        start = new GameButton(menuBackground.getGoldPosition()) {
             @Override
             public void Clicked() {
                 gameWindows.getSceneStack().push(new GameScene(gameWindows));
@@ -42,4 +43,9 @@ public class MenuScene extends Scene {
         super.draw(g);
     }
 
+    @Override
+    public void update() {
+        menuBackground.update();
+        super.update();
+    }
 }
