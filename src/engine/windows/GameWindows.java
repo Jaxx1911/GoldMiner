@@ -33,7 +33,7 @@ public class GameWindows extends Frame implements Runnable {
         sceneStack = new Stack<>();
         keyListenerStack = new Stack<>();
         mouseListenerStack = new Stack<>();
-        this.setSize(2040, 1240);
+        this.setSize(1440, 800);
         this.setTitle("GoldMiner");
         this.setFocusable(true);
         this.setVisible(true);
