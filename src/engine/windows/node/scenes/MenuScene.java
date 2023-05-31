@@ -25,7 +25,7 @@ public class MenuScene extends Scene {
     public MenuScene(GameWindows gameWindows) {
         super(gameWindows);
         menuBackground = new MenuBackground();
-        start = new GameButton(menuBackground.getStartPos()) {
+        start = new GameButton(menuBackground.getStartPos(),true) {
             @Override
             public void Clicked() {
                 gameWindows.getSceneStack().push(new GameScene(gameWindows));
