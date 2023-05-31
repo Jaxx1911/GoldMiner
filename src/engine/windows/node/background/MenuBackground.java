@@ -71,7 +71,7 @@ public class MenuBackground {
         g.drawImage(rock2,930,600,null);
         g.drawImage(rock3,1200,550,null);   g.drawImage(rock3,500,630,null);
         g.drawImage(Tool.ScaleImage(Tool.rotate(light,ratio),2.5),1020 - body.getWidth() + 28 - Tool.ScaleImage(light,2.5).getWidth()/2 ,520 - Tool.ScaleImage(light,2.5).getHeight()/2,null);
-        g.drawImage(body, 1020 - body.getWidth() - 90,425,null);
+        g.drawImage(body, 1020 - body.getWidth() - 105,405,null);
         g.drawImage(rotate(head,angle),1020 - head.getWidth() - 90,350,null);
         g.drawImage(Title, 370,100,null);
         g.drawImage(Tool.ScaleImage(Tool.rotate(star,ratio/1.5),zoomScale-0.3),450 - Tool.ScaleImage(Tool.rotate(star,ratio/1.5),zoomScale-0.3).getWidth()/2, 120 - Tool.ScaleImage(Tool.rotate(star,ratio/1.5),zoomScale-0.3).getHeight()/2,null);
