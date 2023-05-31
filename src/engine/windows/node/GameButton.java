@@ -21,8 +21,9 @@ public abstract class GameButton extends GameObject {
 
     Position clickPosition;
 
-    public GameButton(Position position) {
+    public GameButton(Position position,boolean status) {
         super(position);
+        this.zoom = status;
         mouseListener = new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -34,8 +35,14 @@ public abstract class GameButton extends GameObject {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                if(clickPosition.x>=position.x&&clickPosition.x<= position.x+image.getWidth()&&clickPosition.y>=position.y&&clickPosition.y<= position.y+image.getHeight())
-                    Clicked();
+                if(!zoom) {
+                    if (clickPosition.x >= position.x && clickPosition.x <= position.x + image.getWidth() && clickPosition.y >= position.y && clickPosition.y <= position.y + image.getHeight())
+                        Clicked();
+                }
+                else {
+                    if (clickPosition.x >= (position.x - image.getWidth()/2) && clickPosition.x <= position.x + image.getWidth()/2 && clickPosition.y >= position.y - image.getHeight()/2 && clickPosition.y <= position.y + image.getHeight()/2)
+                        Clicked();
+                }
             }
 
             @Override
