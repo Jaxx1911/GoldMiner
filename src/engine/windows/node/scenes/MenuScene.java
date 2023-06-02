@@ -22,13 +22,17 @@ public class MenuScene extends Scene {
     double scaleButton = 0.9;
     double time = 0;
 
+    GameScene gameScene;
+
     public MenuScene(GameWindows gameWindows) {
         super(gameWindows);
         menuBackground = new MenuBackground();
+        gameScene = new GameScene(gameWindows);
         start = new GameButton(menuBackground.getStartPos(),true) {
             @Override
             public void Clicked() {
-                gameWindows.getSceneStack().push(new GameScene(gameWindows));
+                gameWindows.getSceneStack().push(gameScene);
+                gameWindows.getKeyListenerStack().push(gameScene.keyListener);
             }
         };
         try {
