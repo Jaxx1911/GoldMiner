@@ -1,15 +1,30 @@
 package engine.windows.node.Object;
 
+import engine.windows.Tool;
 import engine.windows.common.Position;
 import engine.windows.node.GameObject;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Rope extends GameObject {
     Taker taker;
+
+    Position connectPosition;
+    double angle;
     public Rope(Position position,Taker taker) {
         super(position);
         this.taker = taker;
+        collidable = false;
+        try {
+            image = ImageIO.read(new File("Resources/GameSceneObject/ropetile.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        connectPosition = new Position((int)taker.getPosition().x+taker.getImage().getWidth()/2,(int)taker.getPosition().y + taker.getImage().getHeight() / 2);
     }
 
     @Override
@@ -18,13 +33,10 @@ public class Rope extends GameObject {
     }
 
     public void draw(Graphics g){
-        super.draw(g);
-        g.setColor(Color.BLACK);
-        g.drawLine(position.x+taker.image.getWidth()/2,position.y,taker.getPosition().x+taker.image.getWidth()/2,taker.getPosition().y);
+        g.drawLine((int)position.x+taker.getImage().getWidth()/2,(int)position.y,(int)taker.getPosition().x+taker.getImage().getWidth()/2,(int)taker.getPosition().y + taker.getImage().getHeight() / 2);
     }
 
     @Override
     public void collideWith(GameObject target) {
-
     }
 }

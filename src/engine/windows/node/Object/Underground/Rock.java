@@ -14,15 +14,6 @@ public class Rock extends UndergroundObject{
 
     public Rock(Position position,String type, Taker taker) {
         super(position, taker);
-        this.type = type;
-        try {
-            if(type == "big")
-                image = ImageIO.read(new File("Resources/Rock/Rock1.png"));
-            if(type == "small")
-                image = ImageIO.read(new File("Resources/Rock/Rock2.png"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override

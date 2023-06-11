@@ -11,7 +11,7 @@ public abstract class GameObject {
 
     protected boolean collidable = true;
 
-    private boolean isDestroyed = false;
+    private boolean isTaked = false;
 
     public GameObject(Position position) {
         this.position = position;
@@ -23,31 +23,35 @@ public abstract class GameObject {
     abstract public void collideWith(GameObject target);
 
     public void draw(Graphics g) {
-        g.drawImage(image, position.x, position.y, null);
+        g.drawImage(image,(int) position.x,(int) position.y, null);
     }
 
     public Position getPosition() {
         return position;
     }
 
-    public void destroyGameObject() {
-        this.isDestroyed = true;
+    public void isCollided() {
+        this.isTaked = true;
     }
 
-    public boolean isDestroy() {
-        return isDestroyed;
+    public void setCollidable(boolean collidable) {
+        this.collidable = collidable;
+    }
+
+    public boolean getStatus() {
+        return isTaked;
     }
 
     public boolean isCollide(GameObject gameObject) {
         if(!this.collidable || !gameObject.collidable) return false;
 
-        int x1 = this.position.x;
-        int y1 = this.position.y;
+        int x1 =(int) this.position.x;
+        int y1 = (int) this.position.y;
         int width1 = this.image.getWidth();
         int height1 = this.image.getHeight();
 
-        int x2 = gameObject.position.x;
-        int y2 = gameObject.position.y;
+        int x2 = (int)gameObject.position.x;
+        int y2 = (int)gameObject.position.y;
         int width2 = gameObject.image.getWidth();
         int height2 = gameObject.image.getHeight();
 
@@ -59,4 +63,7 @@ public abstract class GameObject {
 
     }
 
+    public BufferedImage getImage() {
+        return image;
+    }
 }

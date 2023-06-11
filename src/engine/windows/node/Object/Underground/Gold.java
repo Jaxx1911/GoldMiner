@@ -18,16 +18,6 @@ public class Gold extends UndergroundObject {
     List<BufferedImage> imageList;
     public Gold(Position position, Taker taker) {
         super(position, taker);
-        imageList = new ArrayList<>();
-        try {
-            for(int i = 0 ; i<8;i++){
-                String filename = "Resources/Gold/Gold"+(i+1)+".png";
-                imageList.add(ImageIO.read(new File(filename)));
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        animation = new Animation(1000,imageList,true);
     }
 
 }

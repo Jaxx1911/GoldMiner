@@ -1,4 +1,21 @@
 package engine.windows.node.Object.Underground;
 
-public class Mouse {
+import engine.windows.common.Animation;
+import engine.windows.common.Position;
+import engine.windows.node.Object.Taker;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Mouse extends UndergroundObject{
+    Animation animation;
+
+    List<BufferedImage> imageList;
+    public Mouse(Position position, Taker taker) {
+        super(position, taker);
+    }
 }
