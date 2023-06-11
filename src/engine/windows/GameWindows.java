@@ -53,6 +53,10 @@ public class GameWindows extends Frame implements Runnable {
             sceneStack.peek().update();
         }
         drawBufferImage(g);
+        if(!keyListenerStack .isEmpty())
+            this.addKeyListener(keyListenerStack.peek());
+        if(!mouseListenerStack.isEmpty())
+            this.addMouseListener(mouseListenerStack.peek());
     }
 
     private void drawBufferImage(Graphics g) {
