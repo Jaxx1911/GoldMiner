@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class Rope extends GameObject {
-    BufferedImage image;
     Taker taker;
 
     Position connectPosition;
@@ -19,12 +18,13 @@ public class Rope extends GameObject {
     public Rope(Position position,Taker taker) {
         super(position);
         this.taker = taker;
+        collidable = false;
         try {
             image = ImageIO.read(new File("Resources/GameSceneObject/ropetile.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        connectPosition = new Position(taker.getPosition().x+taker.image.getWidth()/2,taker.getPosition().y + taker.image.getHeight() / 2);
+        connectPosition = new Position((int)taker.getPosition().x+taker.getImage().getWidth()/2,(int)taker.getPosition().y + taker.getImage().getHeight() / 2);
     }
 
     @Override
@@ -33,9 +33,7 @@ public class Rope extends GameObject {
     }
 
     public void draw(Graphics g){
-        super.draw(g);
-
-        g.drawLine(position.x+taker.image.getWidth()/2,position.y,taker.getPosition().x+taker.image.getWidth()/2,taker.getPosition().y + taker.image.getHeight() / 2);
+        g.drawLine((int)position.x+taker.getImage().getWidth()/2,(int)position.y,(int)taker.getPosition().x+taker.getImage().getWidth()/2,(int)taker.getPosition().y + taker.getImage().getHeight() / 2);
     }
 
     @Override

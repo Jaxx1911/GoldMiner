@@ -4,6 +4,7 @@ import engine.windows.common.Animation;
 import engine.windows.common.Position;
 import engine.windows.node.Object.Taker;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,10 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Diamond extends UndergroundObject{
-    Animation animation;
-
     List<BufferedImage> imageList;
     public Diamond(Position position, Taker taker) {
         super(position, taker);
+        try {
+            image = ImageIO.read(new File("Resources/GameSceneObject/ObjTest.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

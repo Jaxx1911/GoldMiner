@@ -47,7 +47,7 @@ public class MenuScene extends Scene {
 
     public void draw(Graphics g) {
         menuBackground.draw(g);
-        g.drawImage(Tool.ScaleImage(start.getImage(),scaleButton),menuBackground.getStartPos().x - Tool.ScaleImage(start.getImage(),scaleButton).getWidth()/2,menuBackground.getStartPos().y - Tool.ScaleImage(start.getImage(),scaleButton).getHeight()/2,null);
+        g.drawImage(Tool.ScaleImage(start.getImage(),scaleButton),(int)menuBackground.getStartPos().x - Tool.ScaleImage(start.getImage(),scaleButton).getWidth()/2,(int)menuBackground.getStartPos().y - Tool.ScaleImage(start.getImage(),scaleButton).getHeight()/2,null);
         super.draw(g);
     }
 
