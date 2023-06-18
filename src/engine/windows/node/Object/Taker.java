@@ -26,7 +26,7 @@ public class Taker extends GameObject {
     public double angle = 0;
     private double cst = 10;
 
-    Position orgPos = new Position(300,200);
+    Position orgPos = new Position(700,150);
 
     boolean oscillate = true;
     boolean throwing = false;
@@ -52,7 +52,6 @@ public class Taker extends GameObject {
     }
 
     Position ThrowingPoint = new Position(0,0);
-    BufferedImage image;
     public Taker(Position position) {
         super(position);
         try {
@@ -68,6 +67,12 @@ public class Taker extends GameObject {
         super.update();
         int xDirection = (position.x - orgPos.x <=0) ? 1 : - 1;
         if(isOscillate()) {
+            try {
+                image = ImageIO.read(new File("Resources/GameSceneObject/Taker.png"));
+                image = Tool.rotateByAnchor(image, 0.0, image.getWidth()/2, image.getHeight()/2 - 10);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             angle = xDirection * Math.acos((double) (position.y - orgPos.y) / BIG_RADIUS);
             time += cst / UPDATE_PER_SECOND;
             this.position.x = orgPos.x + (int) (Radius * Math.cos(w * time));
@@ -85,7 +90,7 @@ public class Taker extends GameObject {
             position.x -= THROWING_SPEED*xDirection*(-1)*Math.abs(Math.sin(angle))/UPDATE_PER_SECOND;
             position.y -= THROWING_SPEED*Math.abs(Math.cos(angle))/UPDATE_PER_SECOND;
         }
-        if(position.y <=350 - image.getHeight() && pulling == true){
+        if(position.y <=250 - image.getHeight() && pulling == true){
             pulling = false;
             taked = true;
             //ThrowingPoint = new Position(0,0);
@@ -93,24 +98,32 @@ public class Taker extends GameObject {
         if(isTaked() == true){
             taked = false;
             oscillate =true;
-
         }
 
     }
 
-    public void draw(Graphics g){
-        super.draw(g);
-        BufferedImage rotated = Tool.rotateCenter(image, angle);
-        g.drawImage(rotated, position.x , position.y, null);
+    public void draw(Graphics g) {
+        int xDirection = (position.x - orgPos.x <= 0) ? 1 : -1;
+        BufferedImage rotated;
+        rotated = Tool.rotateCenter(image, angle);
+        g.drawImage(rotated, (int)position.x , (int)position.y, null);
         //g.drawImage(image, position.x, position.y, null);
     }
 
     @Override
     public void collideWith(GameObject target) {
         if(target instanceof Gold){
+
         }
         if(target instanceof Rock){}
-        if(target instanceof Diamond){}
+        if(target instanceof Diamond){
+            try {
+                image = ImageIO.read(new File("Resources/GameSceneObject/Diamond.png"));
+                image = Tool.rotateByAnchor(image, angle, image.getWidth()/2, image.getHeight()/2 - 10);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         if(target instanceof Mouse){}
         if(target instanceof MysteryBag){}
         if(target instanceof Bone){}
@@ -154,4 +167,6 @@ public class Taker extends GameObject {
     public Position getThrowingPoint() {
         return ThrowingPoint;
     }
+
+
 }

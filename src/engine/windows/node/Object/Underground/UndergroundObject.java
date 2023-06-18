@@ -12,15 +12,11 @@ public class UndergroundObject extends GameObject {
     int mass;
 
     Taker taker;
-
-    Boolean taked;
-
     Position objectCenter;
 
     public UndergroundObject(Position position,Taker taker) {
         super(position);
         this.taker = taker;
-        objectCenter = new Position((position.x+image.getWidth())/2,(position.y+ image.getHeight())/2);
     }
 
     @Override
@@ -36,6 +32,6 @@ public class UndergroundObject extends GameObject {
     @Override
     public void collideWith(GameObject target) {
         if(target instanceof Taker)
-            taked = true;
+            isCollided();
     }
 }

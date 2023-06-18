@@ -74,7 +74,7 @@ public abstract class GameButton extends GameObject {
     }
 
     public void draw(Graphics g){
-        g.drawImage(image,position.x,position.y,null);
+        g.drawImage(image,(int)position.x,(int)position.y,null);
     }
 
 
