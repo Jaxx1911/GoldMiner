@@ -124,7 +124,7 @@ public class Taker extends GameObject {
                 throw new RuntimeException(e);
             }
         }
-        if(target instanceof Mouse){}
+        if(target instanceof Pig){}
         if(target instanceof MysteryBag){}
         if(target instanceof Bone){}
 

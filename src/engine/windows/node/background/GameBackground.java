@@ -18,6 +18,8 @@ public class GameBackground {
     BufferedImage groundtile;
 
     BufferedImage gametopbg;
+    Integer type;
+    Integer maxLevel = 3;
 
 
     BufferedImage dirt;
