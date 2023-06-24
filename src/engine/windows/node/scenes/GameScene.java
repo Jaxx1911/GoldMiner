@@ -6,6 +6,7 @@ import engine.windows.node.GameObject;
 import engine.windows.node.Object.Rope;
 import engine.windows.node.Object.Taker;
 import engine.windows.node.Object.Underground.Diamond;
+import engine.windows.node.Object.Underground.Pig;
 import engine.windows.node.background.GameBackground;
 
 import java.awt.*;
@@ -23,7 +24,7 @@ public class GameScene extends Scene{
     KeyListener keyListener;
     Position position = new Position(0,0);
     Rope rope;
-
+    Pig pig1;
     Diamond diamond;
     public GameScene(GameWindows gameWindows) {
         super(gameWindows);
@@ -32,6 +33,7 @@ public class GameScene extends Scene{
         taker = new Taker(new Position(700,150));
         boom = 0;
         diamond = new Diamond(new Position(800,400),taker);
+        pig1 = new Pig("Pig", new Position(400, 400), taker);
 
         listGameObject.add(taker);
         listGameObject.add(new Rope(new Position(700,200),taker));

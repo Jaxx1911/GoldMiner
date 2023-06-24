@@ -18,6 +18,7 @@ public abstract class GameObject {
     }
 
     public void update() {
+
     }
 
     abstract public void collideWith(GameObject target);
