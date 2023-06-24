@@ -42,4 +42,11 @@ public class Pig extends UndergroundObject {
     public void update() {
         image = PigMove.getCurrentImage();
     }
+    public void pigMove() {
+        PigMove = new Animation(1000, PigAnimate, true);
+    }
+
+    /*public void draw(Graphics g){
+        g.drawImage(PigMove.getCurrentImage(), position.x, position.y, null);
+    }*/
 }
