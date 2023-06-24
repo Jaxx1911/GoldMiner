@@ -24,6 +24,8 @@ public class GameScene extends Scene{
     Position position = new Position(0,0);
     Rope rope;
 
+    int level;
+
     Diamond diamond;
     public GameScene(GameWindows gameWindows) {
         super(gameWindows);
@@ -46,7 +48,12 @@ public class GameScene extends Scene{
 
             @Override
             public void keyPressed(KeyEvent e) {
+                switch (e.getKeyCode()){
 
+                    case KeyEvent.VK_ENTER:
+                        taker.throwAway();
+                        break;
+                }
             }
 
             @Override
@@ -54,13 +61,12 @@ public class GameScene extends Scene{
                 switch (e.getKeyCode()){
 
                     case KeyEvent.VK_ENTER:
-                        if(taker.isOscillate()) {
-                            taker.setOscillate(false);
-                            taker.setThrowing(true);
-                            position = taker.getPosition();
-                        }
-                        taker.setThrowingPoint(position);
+                        taker.throwAway();
                         break;
+                    case KeyEvent.VK_P:
+                        System.out.println("TEST");
+                        break;
+
                 }
             }
         };
@@ -73,7 +79,7 @@ public class GameScene extends Scene{
         g.fillRect((int)taker.getOrgPos().x + taker.getImage().getWidth()/2,(int)taker.getOrgPos().y,1,1);
         super.draw(g);
         //System.out.println(taker.isThrowing()+" "+taker.isOscillate()+" "+taker.isPulling()+" "+taker.isTaked());
-        System.out.println(taker.getAngle()+" "+taker.isOscillate() +" "+taker.isThrowing()+" "+taker.isPulling());
+        //System.out.println(taker.getAngle()+" "+taker.isOscillate() +" "+taker.isThrowing()+" "+taker.isPulling());
     }
 
     @Override

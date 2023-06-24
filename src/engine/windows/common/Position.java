@@ -8,4 +8,8 @@ public class Position {
         this.x = x;
         this.y = y;
     }
+
+    public float distantTo(Position p) {
+        return (float) Math.sqrt(Math.pow((this.x-p.x), 2) + Math.pow((this.y-p.y), 2));
+    }
 }

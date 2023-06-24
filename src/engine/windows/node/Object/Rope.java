@@ -14,7 +14,7 @@ public class Rope extends GameObject {
     Taker taker;
 
     Position connectPosition;
-    double angle;
+    float originalLength;
     public Rope(Position position,Taker taker) {
         super(position);
         this.taker = taker;
@@ -24,8 +24,10 @@ public class Rope extends GameObject {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        connectPosition = new Position((int)taker.getPosition().x+taker.getImage().getWidth()/2,(int)taker.getPosition().y + taker.getImage().getHeight() / 2);
+        //originalLength = position.distantTo(new Position((int)taker.getPosition().x+taker.getImage().getWidth()/2,(int)taker.getPosition().y + taker.getImage().getHeight() / 2));
+        //originalLength = 50;
     }
+
 
     @Override
     public void update() {
@@ -34,6 +36,10 @@ public class Rope extends GameObject {
 
     public void draw(Graphics g){
         g.drawLine((int)position.x+taker.getImage().getWidth()/2,(int)position.y,(int)taker.getPosition().x+taker.getImage().getWidth()/2,(int)taker.getPosition().y + taker.getImage().getHeight() / 2);
+//        float currentLength = position.distantTo(new Position((int) taker.getPosition().x + taker.getImage().getWidth() / 2, (int) taker.getPosition().y + taker.getImage().getHeight() / 2));
+//        if(currentLength + 20 < originalLength) {
+//            taker.reset();
+//        }
     }
 
     @Override

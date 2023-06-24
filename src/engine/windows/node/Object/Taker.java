@@ -33,6 +33,8 @@ public class Taker extends GameObject {
     boolean pulling = false;
     boolean taked = false;
 
+    float weightPercent = 1;
+
     int xD = 0;
 
     public void setOscillate(boolean oscillate) {
@@ -56,7 +58,13 @@ public class Taker extends GameObject {
         super(position);
         try {
             image = ImageIO.read(new File("Resources/GameSceneObject/Taker.png"));
-            image = Tool.rotateByAnchor(image, angle, image.getWidth()/2, image.getHeight()/2 - 10);
+            image = Tool.rotateByAnchor(image, 0.0, image.getWidth()/2, image.getHeight()/2 - 10);
+//            try {
+//                image = ImageIO.read(new File("Resources/GameSceneObject/Taker.png"));
+//                image = Tool.rotateByAnchor(image, 0.0, image.getWidth()/2, image.getHeight()/2 - 10);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -67,12 +75,6 @@ public class Taker extends GameObject {
         super.update();
         int xDirection = (position.x - orgPos.x <=0) ? 1 : - 1;
         if(isOscillate()) {
-            try {
-                image = ImageIO.read(new File("Resources/GameSceneObject/Taker.png"));
-                image = Tool.rotateByAnchor(image, 0.0, image.getWidth()/2, image.getHeight()/2 - 10);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
             angle = xDirection * Math.acos((double) (position.y - orgPos.y) / BIG_RADIUS);
             time += cst / UPDATE_PER_SECOND;
             this.position.x = orgPos.x + (int) (Radius * Math.cos(w * time));
@@ -90,16 +92,26 @@ public class Taker extends GameObject {
             position.x -= THROWING_SPEED*xDirection*(-1)*Math.abs(Math.sin(angle))/UPDATE_PER_SECOND;
             position.y -= THROWING_SPEED*Math.abs(Math.cos(angle))/UPDATE_PER_SECOND;
         }
-        if(position.y <=250 - image.getHeight() && pulling == true){
+        if(position.y <= 250 - image.getHeight()/2 && position.x >= 750 -image.getWidth() && position.x <= 750 && pulling == true){
             pulling = false;
-            taked = true;
-            //ThrowingPoint = new Position(0,0);
+            reset();
+            oscillate = true;
         }
         if(isTaked() == true){
             taked = false;
             oscillate =true;
+            resetImage();
         }
 
+    }
+
+    private void resetImage() {
+        try {
+            image = ImageIO.read(new File("Resources/GameSceneObject/Taker.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        image = Tool.rotateByAnchor(image, 0.0, image.getWidth()/2, image.getHeight()/2 - 10);
     }
 
     public void draw(Graphics g) {
@@ -115,7 +127,13 @@ public class Taker extends GameObject {
         if(target instanceof Gold){
 
         }
-        if(target instanceof Rock){}
+        if(target instanceof Rock){
+            try {
+                image = ImageIO.read(new File("Resources/GameSceneObject/png."));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         if(target instanceof Diamond){
             try {
                 image = ImageIO.read(new File("Resources/GameSceneObject/Diamond.png"));
@@ -124,8 +142,14 @@ public class Taker extends GameObject {
                 throw new RuntimeException(e);
             }
         }
-        if(target instanceof Mouse){}
-        if(target instanceof MysteryBag){}
+        if(target instanceof Pig){}
+        if(target instanceof MysteryBag){
+            try {
+                image = ImageIO.read(new File("Resources/GameSceneObject/MysteryBag.png"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         if(target instanceof Bone){}
 
         pulling = true;
@@ -169,4 +193,19 @@ public class Taker extends GameObject {
     }
 
 
+    public void throwAway() {
+        if(this.oscillate) {
+            oscillate = false;
+            throwing = true;
+            resetImage();
+
+        }
+    }
+
+    public void reset() {
+        pulling = false;
+        throwing = false;
+        oscillate = true;
+        resetImage();
+    }
 }

@@ -19,7 +19,7 @@ public class Animation {
             float animationTime,
             List<BufferedImage> imageList,
             boolean loop
-            ) {
+        ) {
         this.animationTime = animationTime;
         this.imageList = imageList;
         this.frameCount = 0;
