@@ -12,17 +12,20 @@ public class Rock extends UndergroundObject{
 
     String type;
 
-    public Rock(Position position,String type, Taker taker) {
+    public Rock(String type, Position position, Taker taker) {
         super(position, taker);
+        this.type = type;
+        this.initRock();
     }
-
-    @Override
-    public void draw(Graphics g) {
-        super.draw(g);
-    }
-
-    @Override
-    public void update() {
-        super.update();
+    public void initRock() {
+        try {
+            if (type == "big") {
+                image = ImageIO.read(new File("Resources/GameSceneObject/BigRock.png"));
+            } else if (type == "small") {
+                image = ImageIO.read(new File("Resources/GameSceneObject/Rock.png"));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

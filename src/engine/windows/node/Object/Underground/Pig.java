@@ -15,38 +15,37 @@ import java.util.List;
 public class Pig extends UndergroundObject {
     String type;
     List<BufferedImage> PigAnimate = new ArrayList<>();
-    BufferedImage PigImage;
     Animation PigMove;
     //2 loại type: Pig, dPig
     public Pig(String type, Position position, Taker taker) {
         super(position, taker);
         this.type = type;
+        this.initPig();
+    }
+
+    public void initPig() {
         try {
-            if (type == "Pig") {
-                PigImage = ImageIO.read(new File("Resources/Pig/pig.png"));
+            if (type == "Pig" || type == "pig") {
+                PigAnimate.add(ImageIO.read(new File("Resources/Pig/Pig1.png")));
+                PigAnimate.add(ImageIO.read(new File("Resources/Pig/Pig2.png")));
+                PigAnimate.add(ImageIO.read(new File("Resources/Pig/Pig3.png")));
+                PigAnimate.add(ImageIO.read(new File("Resources/Pig/Pig4.png")));
             } else {
-                PigImage = ImageIO.read(new File("Resources/Pig/dPig.png"));
-            }
-            for (int i = 0; i < 128; i += 64) {
-                for (int j = 0; j < 96; j += 48) {
-                    BufferedImage index = PigImage.getSubimage(i, j, 64, 48);
-                    PigAnimate.add(index);
-                }
+                PigAnimate.add(ImageIO.read(new File("Resources/Pig/dPig1.png")));
+                PigAnimate.add(ImageIO.read(new File("Resources/Pig/dPig2.png")));
+                PigAnimate.add(ImageIO.read(new File("Resources/Pig/dPig3.png")));
+                PigAnimate.add(ImageIO.read(new File("Resources/Pig/dPig4.png")));
             }
             PigMove = new Animation(1000, PigAnimate, true);
-            image = PigAnimate.get(0);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
     public void update() {
         image = PigMove.getCurrentImage();
     }
-    public void pigMove() {
-        PigMove = new Animation(1000, PigAnimate, true);
+    public void draw(Graphics g) {
+        g.drawImage(image, (int) position.x, (int) position.y, null);
     }
-
-    /*public void draw(Graphics g){
-        g.drawImage(PigMove.getCurrentImage(), position.x, position.y, null);
-    }*/
 }

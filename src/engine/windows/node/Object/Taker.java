@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Taker extends GameObject {
 
     private double w = 2/(2*Math.PI);
-    private final int Radius = 46;
+    private final int Radius = 48;
     private final int BIG_RADIUS = 50;
 
     private int price;
@@ -59,12 +59,6 @@ public class Taker extends GameObject {
         try {
             image = ImageIO.read(new File("Resources/GameSceneObject/Taker.png"));
             image = Tool.rotateByAnchor(image, 0.0, image.getWidth()/2, image.getHeight()/2 - 10);
-//            try {
-//                image = ImageIO.read(new File("Resources/GameSceneObject/Taker.png"));
-//                image = Tool.rotateByAnchor(image, 0.0, image.getWidth()/2, image.getHeight()/2 - 10);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
