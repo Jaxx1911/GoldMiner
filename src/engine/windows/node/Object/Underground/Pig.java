@@ -15,12 +15,15 @@ import java.util.List;
 public class Pig extends UndergroundObject {
     String type;
     List<BufferedImage> PigAnimate = new ArrayList<>();
-    BufferedImage image;
     Animation PigMove;
     //2 loại type: Pig, dPig
     public Pig(String type, Position position, Taker taker) {
         super(position, taker);
         this.type = type;
+        this.initPig();
+    }
+
+    public void initPig() {
         try {
             if (type == "Pig" || type == "pig") {
                 PigAnimate.add(ImageIO.read(new File("Resources/Pig/Pig1.png")));
@@ -38,6 +41,7 @@ public class Pig extends UndergroundObject {
             throw new RuntimeException(e);
         }
     }
+
     public void update() {
         image = PigMove.getCurrentImage();
     }

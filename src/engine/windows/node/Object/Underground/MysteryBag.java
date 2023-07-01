@@ -12,10 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MysteryBag extends UndergroundObject{
-    Animation animation;
-
-    List<BufferedImage> imageList;
     public MysteryBag(Position position, Taker taker) {
         super(position, taker);
+        try {
+            image = ImageIO.read(new File("Resources/GameSceneObject/MysteryBag.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

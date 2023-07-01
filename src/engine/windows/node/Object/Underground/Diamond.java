@@ -17,7 +17,7 @@ public class Diamond extends UndergroundObject{
     public Diamond(Position position, Taker taker) {
         super(position, taker);
         try {
-            image = ImageIO.read(new File("Resources/GameSceneObject/ObjTest.png"));
+            image = ImageIO.read(new File("Resources/Diamond/diamond.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

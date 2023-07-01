@@ -38,7 +38,6 @@ public class GameWindows extends Frame implements Runnable {
         this.setFocusable(true);
         this.setVisible(true);
         this.setResizable(false);
-
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent e) {
                 super.windowClosing(e);
@@ -47,7 +46,7 @@ public class GameWindows extends Frame implements Runnable {
         });
     }
 
-    @Override
+
     public void update(Graphics g) {
         if (!sceneStack.isEmpty()) {
             sceneStack.peek().update();

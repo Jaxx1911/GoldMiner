@@ -15,17 +15,18 @@ import java.io.File;
 import java.io.IOException;
 
 public class MenuScene extends Scene {
-
     GameButton start;
     MenuBackground menuBackground;
-
     double scaleButton = 0.9;
     double time = 0;
-
     GameScene gameScene;
-
+    GameWindows gameWindows;
     public MenuScene(GameWindows gameWindows) {
         super(gameWindows);
+        this.gameWindows = gameWindows;
+        this.initMenu();
+    }
+    private void initMenu () {
         menuBackground = new MenuBackground();
         gameScene = new GameScene(gameWindows);
         start = new GameButton(menuBackground.getStartPos(),true) {
@@ -42,8 +43,6 @@ public class MenuScene extends Scene {
         }
         gameWindows.getMouseListenerStack().push(start.getMouseListener());
     }
-
-
 
     public void draw(Graphics g) {
         menuBackground.draw(g);
