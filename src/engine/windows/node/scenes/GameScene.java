@@ -6,6 +6,7 @@ import engine.windows.node.GameObject;
 import engine.windows.node.Object.Rope;
 import engine.windows.node.Object.Taker;
 import engine.windows.node.Object.Underground.Diamond;
+import engine.windows.node.Object.Underground.Pig;
 import engine.windows.node.background.GameBackground;
 
 import java.awt.*;
@@ -23,9 +24,7 @@ public class GameScene extends Scene{
     KeyListener keyListener;
     Position position = new Position(0,0);
     Rope rope;
-
-    int level;
-
+    Pig pig1;
     Diamond diamond;
     public GameScene(GameWindows gameWindows) {
         super(gameWindows);
@@ -34,6 +33,7 @@ public class GameScene extends Scene{
         taker = new Taker(new Position(700,150));
         boom = 0;
         diamond = new Diamond(new Position(800,400),taker);
+        pig1 = new Pig("Pig", new Position(400, 400), taker);
 
         listGameObject.add(taker);
         listGameObject.add(new Rope(new Position(700,200),taker));
@@ -48,12 +48,7 @@ public class GameScene extends Scene{
 
             @Override
             public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()){
 
-                    case KeyEvent.VK_ENTER:
-                        taker.throwAway();
-                        break;
-                }
             }
 
             @Override
@@ -61,12 +56,13 @@ public class GameScene extends Scene{
                 switch (e.getKeyCode()){
 
                     case KeyEvent.VK_ENTER:
-                        taker.throwAway();
+                        if(taker.isOscillate()) {
+                            taker.setOscillate(false);
+                            taker.setThrowing(true);
+                            position = taker.getPosition();
+                        }
+                        taker.setThrowingPoint(position);
                         break;
-                    case KeyEvent.VK_P:
-                        System.out.println("TEST");
-                        break;
-
                 }
             }
         };
@@ -79,7 +75,7 @@ public class GameScene extends Scene{
         g.fillRect((int)taker.getOrgPos().x + taker.getImage().getWidth()/2,(int)taker.getOrgPos().y,1,1);
         super.draw(g);
         //System.out.println(taker.isThrowing()+" "+taker.isOscillate()+" "+taker.isPulling()+" "+taker.isTaked());
-        //System.out.println(taker.getAngle()+" "+taker.isOscillate() +" "+taker.isThrowing()+" "+taker.isPulling());
+        System.out.println(taker.getAngle()+" "+taker.isOscillate() +" "+taker.isThrowing()+" "+taker.isPulling());
     }
 
     @Override
