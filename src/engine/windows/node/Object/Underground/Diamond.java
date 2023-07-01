@@ -13,11 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Diamond extends UndergroundObject{
-    List<BufferedImage> imageList;
     public Diamond(Position position, Taker taker) {
+
         super(position, taker);
+        this.value = 500;
         try {
-            image = ImageIO.read(new File("Resources/GameSceneObject/ObjTest.png"));
+            image = ImageIO.read(new File("Resources/Diamond/diamond.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 public class UndergroundObject extends GameObject {
 
     int mass;
-
+    int value;
     Taker taker;
     Position objectCenter;
 
@@ -33,5 +33,9 @@ public class UndergroundObject extends GameObject {
     public void collideWith(GameObject target) {
         if(target instanceof Taker)
             isCollided();
+    }
+
+    public int getValue() {
+        return value;
     }
 }

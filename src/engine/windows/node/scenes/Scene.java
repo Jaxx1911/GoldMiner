@@ -14,8 +14,6 @@ public class Scene {
     protected List<GameObject> listGameObject;
     protected GameWindows gameWindows;
 
-
-
     public Scene(GameWindows gameWindows) {
         this.gameWindows = gameWindows;
         this.listGameObject = new ArrayList<>();
