@@ -24,6 +24,9 @@ public class GameBackground {
 
     BufferedImage dirt;
 
+    BufferedImage money,time,target,level;
+
+
     public GameBackground(){
         try {
             bgtile1 = ImageIO.read(new File("Resources/GameBackGround/bgtile1.png"));   bgtile2 = ImageIO.read(new File("Resources/GameBackGround/bgtile2.png"));   bgtile3  = ImageIO.read(new File("Resources/GameBackGround/bgtile3.png"));  bgtile4  = ImageIO.read(new File("Resources/GameBackGround/bgtile4.png"));
@@ -31,6 +34,10 @@ public class GameBackground {
             groundtile = ImageIO.read(new File("Resources/GameBackGround/groundtile.png"));
             gametopbg = ImageIO.read(new File("Resources/GameBackGround/gametopbg.png"));
             dirt = ImageIO.read(new File("Resources/GameBackGround/dirt.png"));
+            money = ImageIO.read(new File("Resources/GameSceneObject/Money.png"));
+            level = ImageIO.read(new File("Resources/GameSceneObject/Level.png"));
+            target = ImageIO.read(new File("Resources/GameSceneObject/Target.png"));
+            time = ImageIO.read(new File("Resources/GameSceneObject/Time.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -59,5 +66,9 @@ public class GameBackground {
         for(int i = 0;i<=1440;i+=bgtile4.getWidth()){
             g.drawImage(bgtile4, i, 2 * purpletile.getHeight() + bgtile1.getHeight() + bgtile2.getHeight() + bgtile3.getHeight() + bgtile4.getHeight()/2, null);
         }
+        g.drawImage(level,10,60,null);
+        g.drawImage(target,10 ,  110,null);
+        g.drawImage(time, 1440 - 200,60 ,null);
+        g.drawImage(money,1440 - 205, 110,null);
     }
 }
