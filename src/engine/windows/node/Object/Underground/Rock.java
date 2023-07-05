@@ -20,9 +20,11 @@ public class Rock extends UndergroundObject{
     public void initRock() {
         try {
             if (type == "big") {
-                image = ImageIO.read(new File("Resources/GameSceneObject/BigRock.png"));
+                image = ImageIO.read(new File("Resources/Rock/bigRock.png"));
+                value = 20;
             } else if (type == "small") {
-                image = ImageIO.read(new File("Resources/GameSceneObject/Rock.png"));
+                image = ImageIO.read(new File("Resources/Rock/smallRock.png"));
+                value = 11;
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

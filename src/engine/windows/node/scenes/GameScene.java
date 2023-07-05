@@ -1,8 +1,8 @@
 package engine.windows.node.scenes;
 
 import engine.windows.GameLevel.Level;
-import engine.windows.GameLevel.Level1;
 import engine.windows.GameWindows;
+import engine.windows.Score;
 import engine.windows.common.Position;
 import engine.windows.node.GameObject;
 import engine.windows.node.Object.Rope;
@@ -23,8 +23,14 @@ public class GameScene extends Scene{
     KeyListener keyListener;
     Position position = new Position(0,0);
     Rope rope;
-    Level1 level1;
+    Level level1;
     ArrayList listDiamond = new ArrayList<>();
+
+    int time = 60;
+    int tick = 0;
+    int moneyRaise = 0;
+    int money = 0;
+    Score moneyScore, timeScore;
 
     public GameScene(GameWindows gameWindows) {
         super(gameWindows);
@@ -33,11 +39,15 @@ public class GameScene extends Scene{
         this.initTaker();
         this.initGameObj();
         this.addKeyListener();
-
+        this.initScore();
+    }
+    public void initScore(){
+        timeScore = new Score(time,new Position(1300,65));
+        moneyScore = new Score(money, new Position(1300,115));
     }
 
     public void initLevel(Taker taker) {
-        level1 = new Level1(taker);
+        level1 = new Level(taker, 1, 0, 2, 0, 3, 5, 2 ,2, 1);
     }
 
     public void initBackground() {
@@ -89,7 +99,9 @@ public class GameScene extends Scene{
         g.setColor(Color.CYAN);
         g.fillRect((int)taker.getOrgPos().x + taker.getImage().getWidth()/2,(int)taker.getOrgPos().y,1,1);
         super.draw(g);
-        System.out.println(taker.getAngle()+" "+taker.isOscillate() +" "+taker.isThrowing()+" "+taker.isPulling());
+      //  System.out.println(taker.getAngle()+" "+taker.isOscillate() +" "+taker.isThrowing()+" "+taker.isPulling());
+        moneyScore.draw(g);
+        timeScore.draw(g);
     }
 
     public KeyListener getKeyListener() {
@@ -123,5 +135,13 @@ public class GameScene extends Scene{
         super.update();
         checkCollide();
         removeDestroyedGameObjects();
+        tick++;
+        if(tick%60==0){
+            timeScore.addNumber(-1);
+            time -=1;
+        }
+        money+=taker.getPrice();
+        moneyScore.setN(money);
+        taker.setPrice(0);
     }
 }
