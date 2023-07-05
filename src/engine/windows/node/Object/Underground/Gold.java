@@ -27,20 +27,25 @@ public class Gold extends UndergroundObject {
         try {
             if (type == "big") {
                 image = ImageIO.read(new File("Resources/Gold/big.png"));
+                value = 250;
             } else if (type == "medium") {
                 image = ImageIO.read(new File("Resources/Gold/medium.png"));
+                value = 100;
             } else if (type == "small") {
                 image = ImageIO.read(new File("Resources/Gold/small.png"));
+                value = 50;
             } else {
                 image = ImageIO.read(new File("Resources/Gold/square.png"));
+                value = 400;
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-
-
+    public String getType() {
+        return type;
+    }
 }
 
 

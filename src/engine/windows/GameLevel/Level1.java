@@ -6,7 +6,6 @@ import engine.windows.node.GameObject;
 import engine.windows.node.Object.Taker;
 import engine.windows.node.Object.Underground.Diamond;
 import engine.windows.node.Object.Underground.Gold;
-import javafx.util.Pair;
 import sun.net.www.content.text.Generic;
 
 import java.awt.*;

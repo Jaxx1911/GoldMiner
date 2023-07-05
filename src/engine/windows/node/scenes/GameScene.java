@@ -3,8 +3,10 @@ package engine.windows.node.scenes;
 import engine.windows.GameLevel.Level;
 import engine.windows.GameLevel.Level1;
 import engine.windows.GameWindows;
+import engine.windows.Score;
 import engine.windows.common.Position;
 import engine.windows.node.GameObject;
+import engine.windows.node.Object.Human;
 import engine.windows.node.Object.Rope;
 import engine.windows.node.Object.Taker;
 import engine.windows.node.background.GameBackground;
@@ -19,6 +21,8 @@ public class GameScene extends Scene{
 
     GameBackground gameBackground;
     Taker taker;
+
+    Human human;
     int boom;
     KeyListener keyListener;
     Position position = new Position(0,0);
@@ -26,14 +30,27 @@ public class GameScene extends Scene{
     Level1 level1;
     ArrayList listDiamond = new ArrayList<>();
 
+
+
+    int time = 60;
+    int tick = 0;
+    int moneyRaise = 0;
+    int money = 0;
+    Score moneyScore, timeScore,bombNum;
+
     public GameScene(GameWindows gameWindows) {
         super(gameWindows);
+        this.initTaker();
         this.initLevel(this.taker);
         this.initBackground();
-        this.initTaker();
         this.initGameObj();
         this.addKeyListener();
-
+        this.initScore();
+    }
+    public void initScore(){
+        timeScore = new Score(time,new Position(1300,65));
+        moneyScore = new Score(money, new Position(1300,115));
+        bombNum = new Score(boom,new Position(955,100));
     }
 
     public void initLevel(Taker taker) {
@@ -42,12 +59,13 @@ public class GameScene extends Scene{
 
     public void initBackground() {
         gameBackground = new GameBackground();
+        human = new Human(taker);
     }
 
     public void initTaker() {
         taker = new Taker(new Position(700,150));
         rope = new Rope(new Position(700, 200), taker);
-        boom = 0;
+        boom = 5;
     }
 
     public void initGameObj() {
@@ -78,6 +96,14 @@ public class GameScene extends Scene{
                         }
                         taker.setThrowingPoint(position);
                         break;
+                    case KeyEvent.VK_UP:
+                        if(taker.isPulling()==true&& boom > 0&&taker.isTaken()==true){
+                            boom--;
+                            bombNum.setN(boom);
+                            taker.setPrice(0);
+                            taker.reset();
+                        }
+                        break;
                 }
             }
         };
@@ -86,10 +112,9 @@ public class GameScene extends Scene{
     @Override
     public void draw(Graphics g) {
         gameBackground.draw(g);
-        g.setColor(Color.CYAN);
-        g.fillRect((int)taker.getOrgPos().x + taker.getImage().getWidth()/2,(int)taker.getOrgPos().y,1,1);
+        human.draw(g);
         super.draw(g);
-        System.out.println(taker.getAngle()+" "+taker.isOscillate() +" "+taker.isThrowing()+" "+taker.isPulling());
+        drawNum(g);
     }
 
     public KeyListener getKeyListener() {
@@ -123,5 +148,31 @@ public class GameScene extends Scene{
         super.update();
         checkCollide();
         removeDestroyedGameObjects();
+        tickRaise();
+        timeCount();
+        isTaken();
+    }
+    //------Bộ đếm thời gian------//
+    public void timeCount(){
+        if(tick%60==0){
+            this.timeScore.addNumber(-1);
+            this.time -=1;
+        }
+    }
+    public void tickRaise(){
+        this.tick +=1;
+    }
+    //-------Kiểm tra đã gắp thành công------//
+    public void isTaken(){
+        if(taker.isOscillate()){
+            this.money+=taker.getPrice();
+            this.moneyScore.setN(money);
+            taker.setPrice(0);
+        }
+    }
+    public void drawNum(Graphics g){
+        moneyScore.draw(g);
+        timeScore.draw(g);
+        bombNum.draw(g);
     }
 }
