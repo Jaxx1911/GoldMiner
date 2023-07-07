@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Taker extends GameObject {
 
     private double w = 2/(2*Math.PI);
-    private final int Radius = 48;
+    private final int Radius = 49;
     private final int BIG_RADIUS = 50;
 
     private int price;
