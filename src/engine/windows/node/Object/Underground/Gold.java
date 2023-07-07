@@ -26,15 +26,19 @@ public class Gold extends UndergroundObject {
     public void initGold() {
         try {
             if (type == "big") {
+                mass = 40;
                 image = ImageIO.read(new File("Resources/Gold/big.png"));
                 value = 250;
             } else if (type == "medium") {
+                mass = 25;
                 image = ImageIO.read(new File("Resources/Gold/medium.png"));
                 value = 100;
             } else if (type == "small") {
+                mass = 15;
                 image = ImageIO.read(new File("Resources/Gold/small.png"));
                 value = 50;
             } else {
+                mass = 50;
                 image = ImageIO.read(new File("Resources/Gold/square.png"));
                 value = 400;
             }

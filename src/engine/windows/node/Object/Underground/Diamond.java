@@ -16,6 +16,7 @@ public class Diamond extends UndergroundObject{
     public Diamond(Position position, Taker taker) {
 
         super(position, taker);
+        mass = 10;
         this.value = 500;
         try {
             image = ImageIO.read(new File("Resources/Diamond/diamond.png"));

@@ -6,6 +6,7 @@ import engine.windows.node.GameObject;
 import engine.windows.node.Object.Taker;
 import engine.windows.node.Object.Underground.Diamond;
 import engine.windows.node.Object.Underground.Gold;
+import engine.windows.node.Object.Underground.MysteryBag;
 import engine.windows.node.Object.Underground.Rock;
 
 import java.awt.*;
@@ -17,6 +18,7 @@ public class Level {
     Rock rock;
     Gold gold;
     Taker taker;
+    MysteryBag bag;
     List<Position> pos = new ArrayList<Position>();
     List<GameObject> listUObject = new ArrayList<GameObject>();
     GameWindows gameWindows;
@@ -34,6 +36,8 @@ public class Level {
         this.initRock(bigRock, "big");
         this.initRock(smallRock, "small");
 
+        this.initBag(bag);
+
     }
     public void matrixPosition() {
         for(Integer i = 0; i < 1333; i += 36) {
@@ -41,6 +45,38 @@ public class Level {
                 Position tmp = new Position(i, j);
                 this.pos.add(tmp);
             }
+        }
+    }
+
+    public void initBag(int amount) {
+        if(amount == 0)
+            return;
+        while (amount != 0) {
+            int length = this.pos.size();
+            int flag = (int) (Math.random() * length);
+            Position nPos = this.pos.get(flag);
+            bag = new MysteryBag(nPos, taker);
+            int count = 0;
+            int limit = 3;
+            List<Position> bin = new ArrayList<Position>();
+            bin.add(nPos);
+            for (Position pair : this.pos) {
+                for (int i = 1; i <= limit; ++i) {
+                    for(int j = 1; j <= limit; ++j) {
+                        if(pair.x == nPos.x + i*36 && pair.y == nPos.y + j*32) {
+                            bin.add(pair);
+                            count++;
+                        }
+                    }
+                }
+            }
+            if(count == (limit*limit)) {
+                listUObject.add(bag);
+                amount -= 1;
+                this.pos.removeAll(bin);
+            }
+            else
+                continue;;
         }
     }
 
