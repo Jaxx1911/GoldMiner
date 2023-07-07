@@ -1,7 +1,6 @@
 package engine.windows.node.scenes;
 
 import engine.windows.GameLevel.Level;
-import engine.windows.GameLevel.Level1;
 import engine.windows.GameWindows;
 import engine.windows.Score;
 import engine.windows.common.Position;
@@ -27,10 +26,8 @@ public class GameScene extends Scene{
     KeyListener keyListener;
     Position position = new Position(0,0);
     Rope rope;
-    Level1 level1;
+    Level level1;
     ArrayList listDiamond = new ArrayList<>();
-
-
 
     int time = 60;
     int tick = 0;
@@ -54,7 +51,7 @@ public class GameScene extends Scene{
     }
 
     public void initLevel(Taker taker) {
-        level1 = new Level1(taker);
+        level1 = new Level(taker, 1, 0, 2, 0, 3, 5, 2 ,2, 1);
     }
 
     public void initBackground() {
@@ -114,7 +111,9 @@ public class GameScene extends Scene{
         gameBackground.draw(g);
         human.draw(g);
         super.draw(g);
+
         drawNum(g);
+
     }
 
     public KeyListener getKeyListener() {
