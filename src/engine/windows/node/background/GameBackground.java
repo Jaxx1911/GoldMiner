@@ -11,13 +11,14 @@ import java.io.IOException;
 
 public class GameBackground {
 
-    BufferedImage bgtile1,bgtile2,bgtile3,bgtile4;
+    private final BufferedImage bomb;
+    private final BufferedImage bgtile1,bgtile2,bgtile3,bgtile4;
 
-    BufferedImage purpletile;
+    private final BufferedImage purpletile;
 
-    BufferedImage groundtile;
+    private final BufferedImage groundtile;
 
-    BufferedImage gametopbg;
+    private final BufferedImage gametopbg;
     Integer type;
     Integer maxLevel = 3;
 
@@ -38,6 +39,7 @@ public class GameBackground {
             level = ImageIO.read(new File("Resources/GameSceneObject/Level.png"));
             target = ImageIO.read(new File("Resources/GameSceneObject/Target.png"));
             time = ImageIO.read(new File("Resources/GameSceneObject/Time.png"));
+            bomb = ImageIO.read(new File("Resources/GameSceneObject/bomb.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -70,5 +72,6 @@ public class GameBackground {
         g.drawImage(target,10 ,  110,null);
         g.drawImage(time, 1440 - 200,60 ,null);
         g.drawImage(money,1440 - 205, 110,null);
+        g.drawImage(bomb,820,70,null);
     }
 }

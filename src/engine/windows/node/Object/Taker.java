@@ -36,6 +36,7 @@ public class Taker extends GameObject {
     float weightPercent = 1;
 
     int xD = 0;
+    boolean taken;
 
     public void setOscillate(boolean oscillate) {
         this.oscillate = oscillate;
@@ -56,6 +57,7 @@ public class Taker extends GameObject {
     Position ThrowingPoint = new Position(0,0);
     BufferedImage subImage;
     public Taker(Position position) {
+
         super(position);
         try {
             image = ImageIO.read(new File("Resources/GameSceneObject/Taker.png"));
@@ -85,8 +87,8 @@ public class Taker extends GameObject {
             throwing = false;
         }
         if(isPulling()){
-            position.x -= THROWING_SPEED*xDirection*(-1)*Math.abs(Math.sin(angle))/UPDATE_PER_SECOND;
-            position.y -= THROWING_SPEED*Math.abs(Math.cos(angle))/UPDATE_PER_SECOND;
+            position.x -= weightPercent*THROWING_SPEED*xDirection*(-1)*Math.abs(Math.sin(angle))/UPDATE_PER_SECOND;
+            position.y -= weightPercent*THROWING_SPEED*Math.abs(Math.cos(angle))/UPDATE_PER_SECOND;
         }
         if(position.y <= 250 - image.getHeight()/2 && position.x >= 750 -image.getWidth() && position.x <= 750 && pulling == true) {
             pulling = false;
@@ -99,7 +101,6 @@ public class Taker extends GameObject {
             subImage = null;
             resetImage();
         }
-
     }
 
     private void resetImage() {
@@ -174,6 +175,7 @@ public class Taker extends GameObject {
         price = ((UndergroundObject) target).getValue();
         pulling = true;
         throwing = false;
+        taken = true;
     }
 
     public Position getOrgPos() {
@@ -204,28 +206,18 @@ public class Taker extends GameObject {
         return taked;
     }
 
+    public boolean isTaken(){return taken;}
+
     public void setThrowingPoint(Position throwingPoint) {
         ThrowingPoint = throwingPoint;
     }
 
-    public Position getThrowingPoint() {
-        return ThrowingPoint;
-    }
-
-
-    public void throwAway() {
-        if(this.oscillate) {
-            oscillate = false;
-            throwing = true;
-            resetImage();
-
-        }
-    }
 
     public void reset() {
         pulling = false;
         throwing = false;
         oscillate = true;
+        taken = false;
         resetImage();
     }
 
