@@ -12,20 +12,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static engine.windows.common.Animation.UPDATE_PER_SECOND;
+
 public class Pig extends UndergroundObject {
-    String type;
+    Integer type;
     List<BufferedImage> PigAnimate = new ArrayList<>();
     Animation PigMove;
-    //2 loại type: Pig, dPig
-    public Pig(String type, Position position, Taker taker) {
+    Position posTmp;
+
+    double t = 0;
+    //2 loại type: 0: Pig, 1: dPig
+    public Pig(int type, Position position, Taker taker) {
         super(position, taker);
+        this.posTmp = position.clone();
         this.type = type;
         this.initPig();
     }
 
     public void initPig() {
+        mass = 35;
         try {
-            if (type == "Pig" || type == "pig") {
+            if (type == 0) {
                 PigAnimate.add(ImageIO.read(new File("Resources/Pig/Pig1.png")));
                 PigAnimate.add(ImageIO.read(new File("Resources/Pig/Pig2.png")));
                 PigAnimate.add(ImageIO.read(new File("Resources/Pig/Pig3.png")));
@@ -43,7 +50,11 @@ public class Pig extends UndergroundObject {
     }
 
     public void update() {
-        image = PigMove.getCurrentImage();
+        if(!getStatus()){
+            t += 10.0/ UPDATE_PER_SECOND;
+            this.position.x = posTmp.x + (int) (100* Math.cos(1/Math.PI*t));
+        System.out.println(position.x+" "+t);
+        image = PigMove.getCurrentImage();}
     }
     public void draw(Graphics g) {
         g.drawImage(image, (int) position.x, (int) position.y, null);

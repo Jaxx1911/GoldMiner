@@ -4,47 +4,73 @@ import engine.windows.GameWindows;
 import engine.windows.common.Position;
 import engine.windows.node.GameObject;
 import engine.windows.node.Object.Taker;
-import engine.windows.node.Object.Underground.Diamond;
-import engine.windows.node.Object.Underground.Gold;
-import engine.windows.node.Object.Underground.MysteryBag;
-import engine.windows.node.Object.Underground.Rock;
+import engine.windows.node.Object.Underground.*;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
+    int target;
     Diamond diamond;
     Rock rock;
     Gold gold;
     Taker taker;
     MysteryBag bag;
+    Pig pigLon;
+    int count, limit;
     List<Position> pos = new ArrayList<Position>();
     List<GameObject> listUObject = new ArrayList<GameObject>();
-    GameWindows gameWindows;
-    public Level(Taker taker, int level, int diamond, int squareGold, int bigGold, int medGold, int smallGold, int bigRock, int smallRock, int bag) {
+    public Level(Taker taker, int level, int diamond, int squareGold, int bigGold, int medGold, int smallGold, int bigRock, int smallRock, int bag, int pig, int dpig) {
         super();
         this.taker = taker;
         this.matrixPosition();
+        this.initTarget(level);
         this.initDiamond(diamond);
-
+//------initGold------//
         this.initGold(squareGold, "square");
         this.initGold(bigGold, "big");
         this.initGold(medGold, "medium");
         this.initGold(smallGold, "small");
-
+//------initRock------//
         this.initRock(bigRock, "big");
         this.initRock(smallRock, "small");
 
         this.initBag(bag);
 
+        this.initPig(pig, dpig);
+
+    }
+    public void initTarget(int level){
+        switch (level) {
+            case 1:
+                this.target = 650;
+                break;
+            case 2:
+                this.target = 1500;
+                break;
+            case 3:
+                this.target = 3000;
+                break;
+        }
     }
     public void matrixPosition() {
-        for(Integer i = 0; i < 1333; i += 36) {
-            for(Integer j = 300; j < 652; j += 32) {
+        for(Integer i = 0; i < 1400; i += 36) {
+            for(Integer j = 350; j < 800; j += 32) {
                 Position tmp = new Position(i, j);
                 this.pos.add(tmp);
             }
+        }
+    }
+
+    public void initPig(int pig, int dpig) {
+        if(pig == 0 && dpig == 0)
+            return;
+        if(pig != 0) {
+
+        }
+        if(dpig != 0) {
+
         }
     }
 
@@ -56,16 +82,18 @@ public class Level {
             int flag = (int) (Math.random() * length);
             Position nPos = this.pos.get(flag);
             bag = new MysteryBag(nPos, taker);
-            int count = 0;
-            int limit = 3;
+            count = 0;
+            limit = 3;
             List<Position> bin = new ArrayList<Position>();
             bin.add(nPos);
             for (Position pair : this.pos) {
                 for (int i = 1; i <= limit; ++i) {
-                    for(int j = 1; j <= limit; ++j) {
-                        if(pair.x == nPos.x + i*36 && pair.y == nPos.y + j*32) {
-                            bin.add(pair);
-                            count++;
+                    if(pair.x == nPos.x + i*36) {
+                        for (int j = 1; j <= limit; ++j) {
+                            if (pair.y == nPos.y + j * 32) {
+                                bin.add(pair);
+                                count++;
+                            }
                         }
                     }
                 }
@@ -88,16 +116,18 @@ public class Level {
             int flag = (int) (Math.random() * length);
             Position nPos = this.pos.get(flag);
             diamond = new Diamond(nPos, taker);
-            int count = 0;
-            int limit = 2;
+            count = 0;
+            limit = 2;
             List<Position> bin = new ArrayList<Position>();
             bin.add(nPos);
             for (Position pair : this.pos) {
                 for (int i = 1; i <= limit; ++i) {
-                    for(int j = 1; j <= limit; ++j) {
-                        if(pair.x == nPos.x + i*36 && pair.y == nPos.y + j*32) {
-                            bin.add(pair);
-                            count++;
+                    if(pair.x == nPos.x + i*36) {
+                        for (int j = 1; j <= limit; ++j) {
+                            if (pair.y == nPos.y + j * 32) {
+                                bin.add(pair);
+                                count++;
+                            }
                         }
                     }
                 }
@@ -119,8 +149,8 @@ public class Level {
             int flag = (int) (Math.random() * length);
             Position nPos = this.pos.get(flag);
             gold = new Gold(type, nPos, taker);
-            int count = 0;
-            int limit = 1;
+            count = 0;
+            limit = 1;
             if (type == "small") {
                 limit = 2;
             } else if (type == "medium") {
@@ -134,10 +164,12 @@ public class Level {
             bin.add(nPos);
             for (Position pair : this.pos) {
                 for (int i = 1; i <= limit; ++i) {
-                    for(int j = 1; j <= limit; ++j) {
-                        if(pair.x == nPos.x + i*36 && pair.y == nPos.y + j*32) {
-                            bin.add(pair);
-                            count++;
+                    if(pair.x == nPos.x + i*36) {
+                        for (int j = 1; j <= limit; ++j) {
+                            if ( pair.y == nPos.y + j * 32) {
+                                bin.add(pair);
+                                count++;
+                            }
                         }
                     }
                 }
@@ -160,16 +192,18 @@ public class Level {
             int flag = (int) (Math.random() * length);
             Position nPos = this.pos.get(flag);
             rock = new Rock(type, nPos, taker);
-            int count = 0;
-            int limit = 3;
+            count = 0;
+            limit = 3;
             List<Position> bin = new ArrayList<Position>();
             bin.add(nPos);
             for (Position pair : this.pos) {
                 for (int i = 1; i <= limit; ++i) {
-                    for(int j = 1; j <= limit; ++j) {
-                        if(pair.x == nPos.x + i*36 && pair.y == nPos.y + j*32) {
-                            bin.add(pair);
-                            count++;
+                    if(pair.x == nPos.x + i*36) {
+                        for (int j = 1; j <= limit; ++j) {
+                            if ( pair.y == nPos.y + j * 32) {
+                                bin.add(pair);
+                                count++;
+                            }
                         }
                     }
                 }
@@ -198,5 +232,9 @@ public class Level {
         for(GameObject gameObject: listUObject) {
             gameObject.update();
         }
+    }
+
+    public int getTarget() {
+        return target;
     }
 }

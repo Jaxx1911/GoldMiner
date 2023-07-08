@@ -12,4 +12,9 @@ public class Position {
     public float distantTo(Position p) {
         return (float) Math.sqrt(Math.pow((this.x-p.x), 2) + Math.pow((this.y-p.y), 2));
     }
+
+    @Override
+    public Position clone() {
+        return new Position(x,y);
+    }
 }

@@ -32,7 +32,7 @@ public class MysteryBag extends UndergroundObject{
         //Math.random()*(max-min+1) + min
         choice = (int) Math.random()*4;
         if(choice == 0) {
-            value = (int) Math.random()*(862 - 15 + 1) + 15;
+            value = (int) Math.random()*(862 - 25 + 1) + 25;
         } else if (choice == 1) {
             //boom
         } else if (choice == 2) {
