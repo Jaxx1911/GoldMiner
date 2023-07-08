@@ -38,4 +38,8 @@ public class UndergroundObject extends GameObject {
     public int getValue() {
         return value;
     }
+
+    public float getMass() {
+        return mass;
+    }
 }

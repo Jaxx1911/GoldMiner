@@ -13,31 +13,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
+    int target;
     Diamond diamond;
     Rock rock;
     Gold gold;
     Taker taker;
     List<Position> pos = new ArrayList<Position>();
     List<GameObject> listUObject = new ArrayList<GameObject>();
-    GameWindows gameWindows;
     public Level(Taker taker, int level, int diamond, int squareGold, int bigGold, int medGold, int smallGold, int bigRock, int smallRock, int bag) {
         super();
         this.taker = taker;
         this.matrixPosition();
+        this.initTarget(level);
         this.initDiamond(diamond);
-
+//------initGold------//
         this.initGold(squareGold, "square");
         this.initGold(bigGold, "big");
         this.initGold(medGold, "medium");
         this.initGold(smallGold, "small");
-
+//------initRock------//
         this.initRock(bigRock, "big");
         this.initRock(smallRock, "small");
 
     }
+    public void initTarget(int level){
+        switch (level) {
+            case 1:
+                this.target = 650;
+                break;
+            case 2:
+                this.target = 1500;
+                break;
+            case 3:
+                this.target = 3000;
+                break;
+        }
+    }
     public void matrixPosition() {
-        for(Integer i = 0; i < 1333; i += 36) {
-            for(Integer j = 300; j < 652; j += 32) {
+        for(Integer i = 0; i < 1400; i += 36) {
+            for(Integer j = 350; j < 800; j += 32) {
                 Position tmp = new Position(i, j);
                 this.pos.add(tmp);
             }
@@ -162,5 +176,9 @@ public class Level {
         for(GameObject gameObject: listUObject) {
             gameObject.update();
         }
+    }
+
+    public int getTarget() {
+        return target;
     }
 }

@@ -3,6 +3,7 @@ package engine.windows.node.scenes;
 import engine.windows.GameLevel.Level;
 import engine.windows.GameWindows;
 import engine.windows.Score;
+import engine.windows.common.Animation;
 import engine.windows.common.Position;
 import engine.windows.node.GameObject;
 import engine.windows.node.Object.Human;
@@ -10,30 +11,43 @@ import engine.windows.node.Object.Rope;
 import engine.windows.node.Object.Taker;
 import engine.windows.node.background.GameBackground;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 import java.util.List;
 
 public class GameScene extends Scene{
-
+    //------MainObject------//
     GameBackground gameBackground;
     Taker taker;
-
+    Rope rope;
     Human human;
-    int boom;
+
+    //-------Exploding------//
+    boolean throwingBomb;
+    ArrayList<BufferedImage> explodeImages;
+    Stack<Animation> animationStack;
+    Position explodingPosition = new Position(0,0);
+    //------IDK------//
     KeyListener keyListener;
     Position position = new Position(0,0);
-    Rope rope;
-    Level level1;
-    ArrayList listDiamond = new ArrayList<>();
+    //------ Level -------//
+    Vector<Level> levelVector;
+    Level level1,level2,level3,level4,level5;
 
+    int levelPointer = 0;
+    //------Number------//
     int time = 60;
     int tick = 0;
-    int moneyRaise = 0;
     int money = 0;
+    int boom;
     Score moneyScore, timeScore,bombNum;
+    //------End------//
 
     public GameScene(GameWindows gameWindows) {
         super(gameWindows);
@@ -43,6 +57,17 @@ public class GameScene extends Scene{
         this.initGameObj();
         this.addKeyListener();
         this.initScore();
+        this.initExplodeAnimation();
+    }
+    public void initExplodeAnimation(){
+        explodeImages = new ArrayList<>();
+        try {
+            explodeImages.add(ImageIO.read(new File("Resources/Boom/boom2.png")));
+            explodeImages.add(ImageIO.read(new File("Resources/Boom/boom1.png")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        this.animationStack = new Stack<>();
     }
     public void initScore(){
         timeScore = new Score(time,new Position(1300,65));
@@ -51,7 +76,13 @@ public class GameScene extends Scene{
     }
 
     public void initLevel(Taker taker) {
-        level1 = new Level(taker, 1, 0, 2, 0, 3, 5, 2 ,2, 1);
+        level1 = new Level(taker, 1, 0, 2, 0, 3, 5, 2 ,2, 0);
+        level2 = new Level(taker, 2, 1,1, 1, 2, 5,2,3,1);
+        level3 = new Level(taker,3, 2,3,1,2,4,3,1,2);
+        level4 = new Level(taker, 4,5,0,0,0,7,4,4,0);
+        level5 = new Level(taker, 5,3, 2,3,3,5,3,2,2);
+        levelVector = new Vector<>();
+        levelVector.add(level1);levelVector.add(level2);levelVector.add(level3);levelVector.add(level4);levelVector.add(level5);
     }
 
     public void initBackground() {
@@ -67,9 +98,9 @@ public class GameScene extends Scene{
 
     public void initGameObj() {
         listGameObject = new ArrayList<>();
-        listGameObject.add(taker);
         listGameObject.add(rope);
-        for(GameObject gameObject: level1.getListUObject()) {
+        listGameObject.add(taker);
+        for(GameObject gameObject: levelVector.get(levelPointer).getListUObject()) {
             listGameObject.add(gameObject);
         }
     }
@@ -89,16 +120,16 @@ public class GameScene extends Scene{
                         if(taker.isOscillate()) {
                             taker.setOscillate(false);
                             taker.setThrowing(true);
-                            position = taker.getPosition();
                         }
-                        taker.setThrowingPoint(position);
                         break;
                     case KeyEvent.VK_UP:
                         if(taker.isPulling()==true&& boom > 0&&taker.isTaken()==true){
                             boom--;
                             bombNum.setN(boom);
-                            taker.setPrice(0);
+                            explodingPosition = new Position(taker.getPosition().x,taker.getPosition().y);
+                            Exploding();
                             taker.reset();
+                            taker.setPrice(0);
                         }
                         break;
                 }
@@ -111,9 +142,8 @@ public class GameScene extends Scene{
         gameBackground.draw(g);
         human.draw(g);
         super.draw(g);
-
         drawNum(g);
-
+        drawExploitation(g,explodingPosition);
     }
 
     public KeyListener getKeyListener() {
@@ -150,12 +180,13 @@ public class GameScene extends Scene{
         tickRaise();
         timeCount();
         isTaken();
+        finishAnimation();
     }
     //------Bộ đếm thời gian------//
     public void timeCount(){
         if(tick%60==0){
-            this.timeScore.addNumber(-1);
             this.time -=1;
+            this.timeScore.setN(time);
         }
     }
     public void tickRaise(){
@@ -169,9 +200,30 @@ public class GameScene extends Scene{
             taker.setPrice(0);
         }
     }
+    //------ Vẽ số ------//
     public void drawNum(Graphics g){
         moneyScore.draw(g);
         timeScore.draw(g);
         bombNum.draw(g);
+    }
+    //------ Explode ------//
+    public void Exploding(){
+        animationStack.add(new Animation(300,explodeImages,false));
+    }
+    public void drawExploitation(Graphics g,Position position){
+        BufferedImage image = null;
+        if(!animationStack.isEmpty()) {
+            image = animationStack.peek().getCurrentImage();
+            if(image!=null)
+                g.drawImage(image,(int)position.x,(int)position.y,null);
+        }
+    }
+    public void finishAnimation(){
+        if(!animationStack.isEmpty()) {
+            if (animationStack.peek().isFinished()) {
+                animationStack.pop();
+                explodingPosition = new Position(0,0);
+            }
+        }
     }
 }
