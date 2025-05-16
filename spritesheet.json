@@ -6,8 +6,7 @@
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":282,"h":294},
-	"sourceSize": {"w":282,"h":294},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":282,"h":294}
 },
 {
 	"filename": "dice-1.png",
@@ -15,8 +14,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":298,"h":282},
-	"sourceSize": {"w":298,"h":282},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":298,"h":282}
 },
 {
 	"filename": "dice-2.png",
@@ -24,8 +22,7 @@
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":288,"h":293},
-	"sourceSize": {"w":288,"h":293},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":288,"h":293}
 },
 {
 	"filename": "dice-3.png",
@@ -33,8 +30,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":295,"h":295},
-	"sourceSize": {"w":295,"h":295},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":295,"h":295}
 },
 {
 	"filename": "dice-4.png",
@@ -42,8 +38,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":298,"h":294},
-	"sourceSize": {"w":298,"h":294},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":298,"h":294}
 },
 {
 	"filename": "dice-5.png",
@@ -51,8 +46,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":288,"h":285},
-	"sourceSize": {"w":288,"h":285},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":288,"h":285}
 },
 {
 	"filename": "dice-6.png",
@@ -60,8 +54,7 @@
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":290,"h":295},
-	"sourceSize": {"w":290,"h":295},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":290,"h":295}
 },
 {
 	"filename": "dice-7.png",
@@ -69,8 +62,7 @@
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":288,"h":294},
-	"sourceSize": {"w":288,"h":294},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":288,"h":294}
 },
 {
 	"filename": "dice-8.png",
@@ -78,8 +70,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":295,"h":291},
-	"sourceSize": {"w":295,"h":291},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":295,"h":291}
 },
 {
 	"filename": "dice-9.png",
@@ -87,8 +78,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":288,"h":282},
-	"sourceSize": {"w":288,"h":282},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":288,"h":282}
 },
 {
 	"filename": "dice-10.png",
@@ -96,8 +86,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":295,"h":295},
-	"sourceSize": {"w":295,"h":295},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":295,"h":295}
 },
 {
 	"filename": "dice-11.png",
@@ -105,8 +94,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":335,"h":294},
-	"sourceSize": {"w":335,"h":294},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":335,"h":294}
 },
 {
 	"filename": "dice-12.png",
@@ -114,8 +102,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":288,"h":288},
-	"sourceSize": {"w":288,"h":288},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":288,"h":288}
 },
 {
 	"filename": "dice-13.png",
@@ -123,8 +110,7 @@
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":282,"h":289},
-	"sourceSize": {"w":282,"h":289},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":282,"h":289}
 },
 {
 	"filename": "dice-14.png",
@@ -132,8 +118,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":297,"h":295},
-	"sourceSize": {"w":297,"h":295},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":297,"h":295}
 },
 {
 	"filename": "dice-15.png",
@@ -141,8 +126,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":288,"h":287},
-	"sourceSize": {"w":288,"h":287},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":288,"h":287}
 },
 {
 	"filename": "dice-16.png",
@@ -150,8 +134,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":302,"h":291},
-	"sourceSize": {"w":302,"h":291},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":302,"h":291}
 },
 {
 	"filename": "dice-17.png",
@@ -159,8 +142,7 @@
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":287,"h":295},
-	"sourceSize": {"w":287,"h":295},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":287,"h":295}
 },
 {
 	"filename": "dice-18.png",
@@ -168,8 +150,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":295,"h":295},
-	"sourceSize": {"w":295,"h":295},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":295,"h":295}
 },
 {
 	"filename": "dice-19.png",
@@ -177,8 +158,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":297,"h":294},
-	"sourceSize": {"w":297,"h":294},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":297,"h":294}
 },
 {
 	"filename": "dice-20.png",
@@ -186,8 +166,7 @@
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":289,"h":317},
-	"sourceSize": {"w":289,"h":317},
-	"pivot": {"x":0.551331,"y":0.5}
+	"sourceSize": {"w":289,"h":317}
 },
 {
 	"filename": "dice-21.png",
@@ -195,8 +174,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":299,"h":295},
-	"sourceSize": {"w":299,"h":295},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":299,"h":295}
 },
 {
 	"filename": "dice-22.png",
@@ -204,8 +182,7 @@
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":288,"h":303},
-	"sourceSize": {"w":288,"h":303},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":288,"h":303}
 },
 {
 	"filename": "dice-23.png",
@@ -213,8 +190,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":295,"h":295},
-	"sourceSize": {"w":295,"h":295},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":295,"h":295}
 },
 {
 	"filename": "dice-24.png",
@@ -222,8 +198,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":288,"h":288},
-	"sourceSize": {"w":288,"h":288},
-	"pivot": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":288,"h":288}
 }],
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
@@ -232,6 +207,6 @@
 	"format": "RGBA8888",
 	"size": {"w":2047,"h":1174},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:807504591e78efe580ab35ed2d3cb194:97b0bf9bc30d7368914d05c6f938d066:729adc6043343cfda41c447ce8f464d6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:e6101a80cafdb121fadaf165184c9d5e:97b0bf9bc30d7368914d05c6f938d066:729adc6043343cfda41c447ce8f464d6$"
 }
 }
